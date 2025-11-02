@@ -921,18 +921,19 @@ section {
     .navbar .container {
         max-width: 100%;
         padding-top: 15px;
-        padding-right: 0;
+        padding-right: 10px;
         padding-bottom: 0; /* bottom padding explicitly 0 */
-        padding-left: 0;
+        padding-left: 10px;
         display: grid;
-        grid-template-columns: auto auto;
+        /* left column: logo; right column: butterfly above phones */
+        grid-template-columns: auto 1fr;
         grid-template-areas:
             "logo butterfly"
-            "phones phones";
+            "logo phones";
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         column-gap: 12px;
-        row-gap: 0px;
+        row-gap: 6px;
         position: relative;
     }
     
@@ -961,7 +962,8 @@ section {
     
     .butterfly-image {
         grid-area: butterfly;
-        justify-self: start;
+        padding-right: 30px;
+        justify-self: end;
     }
     
     .butterfly-image img {
