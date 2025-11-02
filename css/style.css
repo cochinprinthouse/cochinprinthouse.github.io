@@ -68,7 +68,7 @@ body {
     align-items: center;
     padding-left: 0;
     padding-right: 0;
-    max-width: 80%;
+    max-width: 90%;
 }
 
 .logo {
@@ -82,14 +82,48 @@ body {
     width: auto;
 }
 
+.navbar-right-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .butterfly-image {
-    margin-right: 0;
     flex-shrink: 0;
 }
 
 .butterfly-image img {
     height: 80px;
     width: auto;
+}
+
+.navbar-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+}
+
+.navbar-phones::after {
+    content: '📞';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
+.navbar-phones a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 700;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.navbar-phones a:hover {
+    color: var(--accent-color);
 }
 
 /* Logo Animation */
@@ -200,8 +234,8 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: calc(150vh - 20px);
+    min-height: 470px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -870,22 +904,35 @@ section {
 }
 
 @media (max-width: 768px) {
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
     .navbar {
-        padding: 15px 0;
+        padding: 10px 0 0;
     }
     
     .navbar .container {
         max-width: 100%;
-        padding: 0 15px;
-        display: flex;
-        justify-content: space-between;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-areas:
+            "logo butterfly"
+            "phones phones";
         align-items: center;
+        justify-content: center;
+        column-gap: 12px;
+        row-gap: 6px;
         position: relative;
     }
     
     .logo {
         animation: none;
         flex-shrink: 0;
+        grid-area: logo;
     }
     
     .logo img {
@@ -896,18 +943,43 @@ section {
         display: flex;
         position: absolute;
         right: 15px;
+        top: 18px;
         z-index: 100;
     }
     
+    .navbar-right-group {
+        margin-right: 0;
+        display: contents;
+    }
+    
     .butterfly-image {
-        flex-shrink: 0;
-        margin-right: 60px;
+        grid-area: butterfly;
+        justify-self: start;
     }
     
     .butterfly-image img {
         height: 50px;
     }
     
+    .navbar-phones {
+        grid-area: phones;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+        flex-wrap: wrap;
+        position: static;
+    }
+    
+    .navbar-phones::after {
+        display: none;
+    }
+
+    .navbar-phones a {
+        font-size: 16px;
+    }
+
     .secondary-navbar {
         max-height: 0;
         opacity: 0;
@@ -1058,6 +1130,11 @@ section {
         text-align: center;
     }
     
+    .header-divider img {
+        height: 10px;
+        object-fit: contain;
+    }
+
     .section-title {
         font-size: 2rem;
     }
@@ -1069,7 +1146,7 @@ section {
     }
     
     .hero {
-        margin-top: 140px;
+        margin-top: 0;
     }
     
     .call-button {
